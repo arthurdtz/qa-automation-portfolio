@@ -1,2 +1,80 @@
-# qa-automation-portfolio
-API and UI test automation with Python, pytest, and Selenium — QA portfolio project
+# QA Automation Portfolio
+
+API and UI test automation suite built with **Python**, **pytest**, and **Selenium** — a hands-on portfolio project demonstrating test design, automation, and CI practices for QA Automation / SDET roles.
+
+---
+
+## 🎯 About
+
+This project simulates a real-world QA automation workflow: testing a live, authenticated REST API and (soon) a web UI, with proper project structure, environment handling, and version control practices used in professional QA teams.
+
+## 🛠️ Tech Stack
+
+- **Language:** Python 3.13
+- **Test Framework:** pytest
+- **HTTP Client:** Requests
+- **Environment Management:** python-dotenv
+- **UI Automation (in progress):** Selenium
+
+## 📁 Project Structure
+
+```
+qa-automation-portfolio/
+├── api_tests/
+│   ├── conftest.py       # Shared fixtures (base URL, auth headers)
+│   └── test_users.py     # CRUD test coverage for /users endpoint
+├── ui_tests/              # Coming soon
+├── requirements.txt
+└── .env                   # Local only — not committed (see .gitignore)
+```
+
+## ✅ What's Tested
+
+**API — `/users` endpoint (reqres.in)**
+- GET existing user → `200 OK` with correct payload
+- GET non-existent user → `404 Not Found`
+- POST create user → `201 Created` with submitted data returned
+- PUT update user → `200 OK`
+- DELETE user → `204 No Content`
+
+Tests validate both **happy paths** and **error handling**, using a real authenticated API (`x-api-key`) rather than an open, no-auth mock — closer to how APIs behave in production.
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/arthurdtz/qa-automation-portfolio.git
+cd qa-automation-portfolio
+
+# Create and activate a virtual environment
+python -m venv venv
+venv\Scripts\activate      # Windows
+source venv/bin/activate   # macOS/Linux
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Add your own API key
+# Create a .env file in the project root:
+# REQRES_API_KEY=your_key_here
+# Get a free key at https://reqres.in/signup
+```
+
+## ▶️ Running the Tests
+
+```bash
+pytest api_tests/ -v
+```
+
+## 🗺️ Roadmap
+
+- [x] API test suite (CRUD + error handling)
+- [ ] UI test suite with Selenium (Page Object Model)
+- [ ] GitHub Actions CI pipeline
+- [ ] HTML test reports
+
+## 👤 Author
+
+**Arthur Meneses**
+Software Engineering Student | Aspiring QA Automation Engineer
+[LinkedIn](https://www.linkedin.com/in/arthurdtz) · [GitHub](https://github.com/arthurdtz)
