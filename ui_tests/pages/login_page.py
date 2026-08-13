@@ -1,3 +1,5 @@
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class LoginPage:
@@ -20,4 +22,7 @@ class LoginPage:
         self.driver.find_element(*self.LOGIN_BUTTON).click()
 
     def get_flash_message(self):
-        return self.driver.find_element(*self.FLASH_MESSAGE).text
+        flash = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(self.FLASH_MESSAGE)
+        )
+        return flash.text
