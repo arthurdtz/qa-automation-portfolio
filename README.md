@@ -6,7 +6,7 @@ API and UI test automation suite built with **Python**, **pytest**, and **Seleni
 
 ## 🎯 About
 
-This project simulates a real-world QA automation workflow: testing a live, authenticated REST API and (soon) a web UI, with proper project structure, environment handling, and version control practices used in professional QA teams.
+This project simulates a real-world QA automation workflow: testing a live, authenticated REST API and a web UI, with proper project structure, environment handling, and version control practices used in professional QA teams.
 
 ## 🛠️ Tech Stack
 
@@ -14,18 +14,22 @@ This project simulates a real-world QA automation workflow: testing a live, auth
 - **Test Framework:** pytest
 - **HTTP Client:** Requests
 - **Environment Management:** python-dotenv
-- **UI Automation (in progress):** Selenium
+- **UI Automation:** Selenium
 
 ## 📁 Project Structure
 
 ```
 qa-automation-portfolio/
 ├── api_tests/
-│   ├── conftest.py       # Shared fixtures (base URL, auth headers)
-│   └── test_users.py     # CRUD test coverage for /users endpoint
-├── ui_tests/              # Coming soon
+│   ├── conftest.py
+│   └── test_users.py
+├── ui_tests/
+│   ├── pages/
+│   │   └── login_page.py
+│   ├── conftest.py
+│   └── test_login.py
 ├── requirements.txt
-└── .env                   # Local only — not committed (see .gitignore)
+└── .env
 ```
 
 ## ✅ What's Tested
@@ -36,6 +40,11 @@ qa-automation-portfolio/
 - POST create user → `201 Created` with submitted data returned
 - PUT update user → `200 OK`
 - DELETE user → `204 No Content`
+
+**UI — Login page (the-internet.herokuapp.com)**
+- Successful login → validates success message
+- Invalid username → validates error message
+- Invalid password → validates error message
 
 Tests validate both **happy paths** and **error handling**, using a real authenticated API (`x-api-key`) rather than an open, no-auth mock — closer to how APIs behave in production.
 
@@ -69,7 +78,7 @@ pytest api_tests/ -v
 ## 🗺️ Roadmap
 
 - [x] API test suite (CRUD + error handling)
-- [ ] UI test suite with Selenium (Page Object Model)
+- [x] UI test suite with Selenium (Page Object Model)
 - [ ] GitHub Actions CI pipeline
 - [ ] HTML test reports
 
