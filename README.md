@@ -1,5 +1,7 @@
 # QA Automation Portfolio
 
+[![tests](https://github.com/arthurdtz/qa-automation-portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/arthurdtz/qa-automation-portfolio/actions/workflows/tests.yml)
+
 API and UI test automation suite built with **Python**, **pytest**, and **Selenium** — a hands-on portfolio project demonstrating test design, automation, and CI practices for QA Automation / SDET roles.
 
 ---
@@ -14,12 +16,16 @@ This project simulates a real-world QA automation workflow: testing a live, auth
 - **Test Framework:** pytest
 - **HTTP Client:** Requests
 - **Environment Management:** python-dotenv
-- **UI Automation:** Selenium
+- **UI Automation:** Selenium (headless Chrome on CI)
+- **Reporting:** pytest-html
+- **CI:** GitHub Actions
 
 ## 📁 Project Structure
 
 ```
 qa-automation-portfolio/
+├── .github/workflows/
+│   └── tests.yml
 ├── api_tests/
 │   ├── conftest.py
 │   └── test_users.py
@@ -72,15 +78,30 @@ pip install -r requirements.txt
 ## ▶️ Running the Tests
 
 ```bash
+# API tests
 pytest api_tests/ -v
+
+# UI tests (opens Chrome; set HEADLESS=1 to run without a window)
+pytest ui_tests/ -v
+
+# Any suite with an HTML report
+pytest api_tests/ -v --html=reports/api-report.html --self-contained-html
 ```
+
+## ⚙️ Continuous Integration
+
+Every push to `main` and every pull request runs both suites on GitHub Actions ([`tests.yml`](.github/workflows/tests.yml)):
+
+- **API tests** use the `REQRES_API_KEY` repository secret
+- **UI tests** run in headless Chrome
+- Each job publishes its **HTML report** as a downloadable artifact on the run page
 
 ## 🗺️ Roadmap
 
 - [x] API test suite (CRUD + error handling)
 - [x] UI test suite with Selenium (Page Object Model)
-- [ ] GitHub Actions CI pipeline
-- [ ] HTML test reports
+- [x] GitHub Actions CI pipeline
+- [x] HTML test reports
 
 ## 👤 Author
 
